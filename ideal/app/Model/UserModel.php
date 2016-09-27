@@ -105,7 +105,7 @@ class UserModel extends Model {
         
         public function getPopularUsers()
         {
-            $popular = DB::table('Karma')->orderBy('karma','desk')->take(3)->get();
+            $popular = DB::table('Karma')->orderBy('karma','desk')->take(15)->get();
             $arr = array();
             $i=0;
             foreach($popular as $pop )
