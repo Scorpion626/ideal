@@ -1,0 +1,59 @@
+<?php $__env->startSection('content'); ?>
+    <nav class="leftContainer_l2">
+        <br>
+        <a href="http://ideal/main" class="header_r">&nbsp;&nbsp;На главную</a><br>
+   </nav>
+
+<nav class="userInfo">
+    <br>
+    <img src="<?php echo e($foto); ?>" class="foto"> &nbsp;
+    <nav class="login"><h3><?php echo e(session('login')); ?> &nbsp;&nbsp Ваша карма: <?php echo e($karma); ?></h3>
+        
+    </nav>
+   
+    <div class="login">
+    <a href='http://ideal/change'>Изменить информацию о себе</a>
+    
+    </div>
+    <h3>История</h3>
+     <div id="story">
+        <?php if($story != NULL): ?>
+                <?php foreach($story as $stor): ?>
+                <?php if($stor['Karma_change'] == '+'): ?>
+                    <div class="plusStory">
+                <?php else: ?>
+                    <div class="minusStory">
+                <?php endif; ?>  
+                    <label> <?php echo e($stor['date']); ?> </label>&nbsp;
+                    <a href='http://ideal/userInfo?user_id=<?php echo e($stor['id_userFrom']); ?>'><?php echo e($stor['loginStory']); ?></a>&nbsp;
+                    <label><?php echo e($stor['sex']); ?></label>&nbsp;
+                    <label><?php echo e($stor['Karma_change']); ?></label>
+                </div><br>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <h4 class='emptyKarma'>Извините, но вашу карму никто не изменял</h4>
+        <?php endif; ?>
+    </div>
+    <h3>Комментарии</h3>
+     <div class="comment" id="comments">
+                <?php if($comments != NULL): ?>
+                    <?php foreach($comments as $com): ?>
+                    <div>
+                        <pre class="commentVies"><?php echo e($com->comment); ?></pre>
+                        <label><?php echo e($com->sex); ?></label>
+                         <a href='http://ideal/userInfo?user_id=<?php echo e($com->id_user); ?>'><?php echo e($com->login); ?></a>&nbsp;
+                         <label><?php echo e($com->date); ?></label>
+                    </div>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <h4 class="emptyKarma">Эту страницу ещё никто не комментировал</h4>
+                <?php endif; ?>
+                <form method="POST" action='http://ideal/userInfo?user_id=<?php echo e(session('user_id')); ?>'>
+                    <input type="hidden" id="_token" name="_token" value="<?php echo e(csrf_token()); ?>">
+                    <textarea name="comment" id="textCom" placeholder="Введите ваш комментарий"></textarea><br>
+                    <input type="submit" name="add" value="добавить">
+                </form>
+            </div>
+</nav>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('ideal/auth/template', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

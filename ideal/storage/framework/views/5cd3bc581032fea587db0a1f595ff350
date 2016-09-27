@@ -1,0 +1,21 @@
+<?php $__env->startSection('content'); ?>
+  <div class='header' >  
+    <nav class="textcontainer_l">
+        
+        <h2>Лучшие люди Интернета</h2>
+    </nav>
+    <nav class="text_r">
+        
+        <a href="http://ideal:88/enter">Войти</a><br>
+        <a href="http://ideal:88/registration">Зарегистрироваться</a>
+        
+    </nav>
+</div>
+<div name='content'>
+    <div name='left'>
+        
+    </div>
+    
+</div>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('ideal/template', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

@@ -1,0 +1,8 @@
+<?php $__env->startSection('content'); ?>
+    <?php foreach($pop as $popular): ?>
+    <img src="<?php echo e($popular['foto']); ?>"><br>
+    <a href="http://ideal:88/userInfo?user_id=<?php echo e($popular['user_id']); ?>"><?php echo e($popular['login']); ?></a>
+    <br>
+    <?php endforeach; ?>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('ideal/template', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

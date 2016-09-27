@@ -1,0 +1,44 @@
+<?php $__env->startSection('content'); ?>
+<nav class="leftContainer_l2">
+        <br>
+        <a href="http://ideal/main">На главную</a><br>
+   </nav>
+<nav >
+    <h3 align='center'>Мой профиль</h3>
+    <br>
+    <nav class="change">
+        <form action="change" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
+        <label style="font-weight: bold">Мой логин:</label>&nbsp;
+        <label> &nbsp;<?php echo e(session('login')); ?></label><br>
+        <label style="font-weight: bold">Аватар</label>
+        <div class="file-upload">
+                <label>
+                    <input type="file" name="foto" id="foto" accept="image/jpeg,image/png,image/jpg,imgage/gif">
+                    <span>Выберите файл</span>
+                </label>
+         </div>
+        <nav class="error">
+            <label id="errorFoto">
+                <?php if(isset($fotoErr)): ?>
+                <?php echo $fotoErr; ?>
+
+            </label>
+        <?php endif; ?>
+         </nav>
+        <input type="text" id="filename" class="filename" disabled="">
+            <br>
+        <label>Пол</label>
+        <br>
+        <select name="sex">
+            <option selected value="<?php echo e($sex); ?>"><?php echo e($sexName); ?></option>
+            <option value="<?php echo e($unCheckSex); ?>"><?php echo e($unCheck); ?></option>
+        </select>
+        <br>
+        <br>
+        <input type="submit" name="submit" id="submit" value="Подтвердить">
+        </form>
+    </nav>
+</nav>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('ideal/auth/template', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
