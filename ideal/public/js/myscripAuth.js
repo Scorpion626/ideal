@@ -192,7 +192,8 @@ $(document).ready(function()
         var token = $('#_token').val();
         $('.centerInfo').preloader('start');
         people.plus(token,user_id);
-        location.reload();
+       var oldloc = location;
+        location = oldloc;
     });
     $(document).on('click','div.minusUser',function(e)
     {
@@ -200,7 +201,8 @@ $(document).ready(function()
         var token = $('#_token').val();
          $('.centerInfo').preloader('start');
         people.minus(token,user_id);
-        location.reload();
+        var oldloc = location;
+        location = oldloc;
     });
    
    
