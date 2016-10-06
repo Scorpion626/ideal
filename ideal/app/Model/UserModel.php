@@ -267,4 +267,20 @@ class UserModel extends Model {
             }
             return $comment;
         }
+        public function checkKarmaChange($userTo,$userFrom,$type)
+        {
+            $idFrom = htmlspecialchars($userFrom);
+            $idTo = htmlspecialchars($userTo);
+            $check = DB::table('KarmaStory')->where('id_user','=',$idTo)
+                    ->where('id_userFrom','=',$idFrom)
+                    ->select('Karma_change')->first();
+            if($check->Karma_change == $type)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
 }
